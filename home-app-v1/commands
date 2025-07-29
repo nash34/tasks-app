@@ -1,0 +1,32 @@
+curl http://localhost:4040/api/tunnels | grep public
+
+
+nohup ngrok http 5000 >/dev/null 2>&1 &
+
+
+pip3 install -r requirements.txt 
+
+
+
+
+248  scp -r /Users/dharmanunna/Documents/Projects/HOME-App/home-app-v1 dev_user@192.168.1.190:/home/dev_user/
+
+
+scp -r /Users/dharmanunna/Documents/Projects/HOME-App/home-app-v1/static/style.css dev_user@192.168.1.190:/home/dev_user/home-app-v1/static/style.css
+
+scp -r /Users/dharmanunna/Documents/Projects/HOME-App/home-app-v1/templates/home.html dev_user@192.168.1.190:/home/dev_user/home-app-v1/templates/home.html
+
+scp -r /Users/dharmanunna/Documents/Projects/HOME-App/home-app-v1/app.py dev_user@192.168.1.190:/home/dev_user/home-app-v1/app.py
+scp -r /Users/dharmanunna/Documents/Projects/HOME-App/home-app-v1/templates/landing.html dev_user@192.168.1.190:/home/dev_user/home-app-v1/templates/landing.html
+scp -r /Users/dharmanunna/Documents/Projects/HOME-App/home-app-v1/templates/settings.html dev_user@192.168.1.190:/home/dev_user/home-app-v1/templates/settings.html
+
+
+ssh dev_user@192.168.1.190
+
+
+ps -aux | grep app.py
+kill -9 
+
+cd home-app-v1/
+nohup python3 app.py > /dev/null 2>&1 &
+ps -aux | grep app.py

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="text-center mb-4">Enter Passcode</h1>
+<form method="POST" id="passcodeForm">
+    <div class="mb-3">
+        <input type="password" name="passcode" id="passcodeInput" class="form-control form-control-lg text-center" maxlength="4" required placeholder="****">
+    </div>
+    <div class="row row-cols-3 g-2 mb-3">
+        {% for num in range(1, 10) %}
+        <div class="col">
+            <button type="button" class="btn btn-outline-primary btn-lg w-100 keypad-btn" data-num="{{ num }}">{{ num }}</button>
+        </div>
+        {% endfor %}
+        <div class="col"></div> <!-- Empty for centering -->
+        <div class="col">
+            <button type="button" class="btn btn-outline-primary btn-lg w-100 keypad-btn" data-num="0">0</button>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-outline-secondary btn-lg w-100 keypad-btn" id="clearBtn">Clear</button>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg w-100">Login</button>
+</form>
+<a href="{{ url_for('landing') }}" class="btn btn-secondary btn-lg w-100 mt-2">Back</a>
+<script>
+document.querySelectorAll('.keypad-btn[data-num]').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const input = document.getElementById('passcodeInput');
+        if (input.value.length < 4) {
+            input.value += btn.dataset.num;
+        }
+    });
+});
+document.getElementById('clearBtn').addEventListener('click', () => {
+    document.getElementById('passcodeInput').value = '';
+});
+</script>
+{% endblock %}

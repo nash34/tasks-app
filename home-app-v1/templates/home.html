@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if no_data %}
+<div class="alert alert-warning text-center">
+    <h4>No tasks available. Please ensure users and tasks are set up in the database.</h4>
+    <a href="{{ url_for('landing') }}" class="btn btn-primary mt-3">Add Users</a>
+</div>
+{% else %}
+<div class="d-flex flex-column align-items-center mb-4">
+    <a href="{{ url_for('home', date=prev_date) }}" class="btn btn-outline-primary btn-lg arrow-btn mb-2">{{ prev_display | safe }}</a>
+    <h1 class="text-center">{{ current_display }}</h1>
+    <a href="{{ url_for('home', date=next_date) }}" class="btn btn-outline-primary btn-lg arrow-btn mt-2">{{ next_display | safe }}</a>
+</div>
+{% for cat, tasks in categories.items() %}
+<h2 class="mt-4">{{ cat.capitalize() }}</h2>
+<ul class="list-group">
+    {% for task in tasks %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span>{{ task.template.name }}</span>
+        <div>
+            <form method="POST" style="display:inline;">
+                <input type="hidden" name="action" value="toggle_done">
+                <input type="hidden" name="instance_id" value="{{ task.instance.id }}">
+                <button type="submit" class="btn btn-sm {{ 'btn-success' if task.instance.done else 'btn-outline-secondary' }}" {{ 'disabled' if not is_editable }}>
+                    {{ 'Done' if task.instance.done else 'Undone' }}
+                </button>
+            </form>
+            {% if is_parent %}
+            <form method="POST" style="display:inline;">
+                <input type="hidden" name="action" value="toggle_star">
+                <input type="hidden" name="instance_id" value="{{ task.instance.id }}">
+                <button type="submit" class="btn btn-sm {{ 'btn-warning' if task.instance.starred else 'btn-outline-warning' }}">
+                    ★
+                </button>
+            </form>
+            {% else %}
+            <span class="btn btn-sm {{ 'btn-warning' if task.instance.starred else 'btn-outline-warning' }}" style="pointer-events: none;">
+                ★
+            </span>
+            {% endif %}
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endfor %}
+{% if is_parent %}
+<form method="POST" class="mt-4">
+    <input type="hidden" name="action" value="star_all">
+    <button type="submit" class="btn btn-success btn-lg w-100">Star All Completed</button>
+</form>
+{% endif %}
+<a href="{{ url_for('history') }}" class="btn btn-info btn-lg w-100 mt-4">Star History</a>
+{% endif %}
+{% if is_parent %}
+<a href="{{ url_for('settings') }}" class="btn btn-secondary btn-lg w-100 mt-2">Settings</a>
+{% endif %}
+<a href="{{ url_for('logout') }}" class="btn btn-danger btn-lg w-100 mt-2">Logout</a>
+{% endblock %}

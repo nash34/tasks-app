@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-center mb-3">{{ user_name }}</h2>
+<h1 class="text-center mb-4">Select Kid</h1>
+<div class="row">
+    {% for kid in kids %}
+    <div class="col-6 col-md-4 mb-3">
+        <a href="{{ url_for('set_view', kid_id=kid.id) }}" class="text-decoration-none">
+            <div class="card shadow text-center">
+                <img src="{{ url_for('uploads', filename=kid.profile_pic) if kid.profile_pic else '/static/default.png' }}" class="card-img-top rounded-circle mx-auto mt-3" style="width:100px;height:100px;object-fit:cover;">
+                <div class="card-body">
+                    <h5>{{ kid.name }}</h5>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+<a href="{{ url_for('settings') }}" class="btn btn-secondary btn-lg w-100 mt-4">Settings</a>
+<a href="{{ url_for('logout') }}" class="btn btn-danger btn-lg w-100 mt-2">Logout</a>
+{% endblock %}
