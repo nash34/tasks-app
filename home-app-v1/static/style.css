@@ -38,4 +38,5 @@ body.bg-light-blue {
 }
 .username {
     font-size: 36px; /* ~4pt larger than default h5 (~20px) */
+    font-family: Tahoma, sans-serif;
 }
