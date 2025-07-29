@@ -11,7 +11,7 @@ import logging
 app = Flask(__name__)
 app.secret_key = 'super_secret_key'  # Change in production
 app.config['SESSION_TYPE'] = 'filesystem'
-app.config['UPLOAD_FOLDER'] = os.path.join('static', 'Uploads')
+app.config['UPLOAD_FOLDER'] = os.path.join('static', 'uploads')
 Session(app)
 
 # Setup logging
