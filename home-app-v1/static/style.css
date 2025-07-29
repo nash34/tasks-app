@@ -29,6 +29,13 @@ body.bg-light-blue {
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 .arrow-btn {
-    width: auto; /* Dynamically adjust to content */
-    padding: 10px 20px; /* Consistent padding for touch-friendliness */
+    width: auto;
+    padding: 10px 20px;
+}
+.stars-last-two-days {
+    font-weight: bold;
+    font-size: 18px; /* ~2pt larger than default 16px */
+}
+.username {
+    font-size: 36px; /* ~4pt larger than default h5 (~20px) */
 }
