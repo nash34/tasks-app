@@ -34,10 +34,14 @@ body.bg-light-blue {
 }
 .stars-last-two-days {
     font-weight: bold;
-    font-size: 18px; /* ~2pt larger than default 16px */
+    font-size: 18px;
+}
+.stars-last-two-days-number {
+    font-weight: bold;
+    font-size: 24px;
 }
 .username {
-    font-size: 36px; /* ~4pt larger than default h5 (~20px) */
+    font-size: 36px;
     font-family: Tahoma, sans-serif;
     font-weight: bold;
 }
