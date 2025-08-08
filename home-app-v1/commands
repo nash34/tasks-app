@@ -20,9 +20,9 @@ ps -aux | grep app.py
 
 
 -- copy git files to server
-wget https://raw.githubusercontent.com/nash34/tasks-app/main/home-app-v1/
 
-
+wget -P /home/dev_user/home-app-v1/templates/ https://raw.githubusercontent.com/nash34/tasks-app/main/home-app-v1/templates/landing.html
+wget -P /home/dev_user/home-app-v1/static/ https://raw.githubusercontent.com/nash34/tasks-app/main/home-app-v1/static/style.css
 
 
 
