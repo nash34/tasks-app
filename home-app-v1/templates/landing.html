@@ -1,37 +1,42 @@
-{% extends 'base.html' %}
-{% block content %}
-<h1 class="text-center mb-4">Welcome to HOME</h1>
-<h2 class="mt-4">Kids</h2>
-<div class="row">
-    {% for user in kids %}
-    <div class="col-6 col-md-4 mb-3">
-        <a href="{{ url_for('login', user_id=user.id) }}" class="text-decoration-none">
-            <div class="card shadow text-center">
-                <img src="{{ url_for('uploads', filename=user.profile_pic) if user.profile_pic else '/static/default.png' }}" class="card-img-top rounded-circle mx-auto mt-3" style="width:100px;height:100px;object-fit:cover;">
-                <div class="card-body">
-                    <h5 class="username">{{ user.name }}</h5>
-                    <p class="text-muted"><span class="text-warning">★</span> This month: {{ user.stars_month }}</p>
-                    <p class="text-muted stars-last-two-days"><span class="text-warning">★</span> Last Two Days </p>
-                    <p class="text-muted stars-last-two-days-number"> {{ user.stars_last_two_days }}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskMaster - Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to TaskMaster</h1>
+        <div class="user-grid">
+            {% for user in users %}
+                <div class="user-card {% if user['type'] == 'kid' %}kid-user{% endif %}">
+                    <img src="{{ url_for('static', filename=user['profile_picture']) }}" alt="{{ user['name'] }}'s profile picture" class="profile-pic">
+                    <h2 class="user-name">{{ user['name'] }}</h2>
+                    <form action="{{ url_for('login') }}" method="POST">
+                        <input type="hidden" name="username" value="{{ user['name'] }}">
+                        <input type="password" name="passcode" placeholder="Enter 4-digit passcode" maxlength="4" required>
+                        <button type="submit">Login</button>
+                    </form>
                 </div>
-            </div>
-        </a>
+            {% endfor %}
+        </div>
+        {% if parent %}
+        <div class="add-user">
+            <h2>Add New User</h2>
+            <form action="{{ url_for('add_user') }}" method="POST" enctype="multipart/form-data">
+                <input type="text" name="name" placeholder="Enter name" required>
+                <input type="password" name="passcode" placeholder="Enter 4-digit passcode" maxlength="4" required>
+                <select name="user_type" required>
+                    <option value="parent">Parent</option>
+                    <option value="kid">Kid</option>
+                </select>
+                <input type="file" name="profile_picture" accept="image/*">
+                <button type="submit">Add User</button>
+            </form>
+        </div>
+        {% endif %}
     </div>
-    {% endfor %}
-</div>
-<h2 class="mt-4">Parents</h2>
-<div class="row">
-    {% for user in parents %}
-    <div class="col-6 col-md-4 mb-3">
-        <a href="{{ url_for('login', user_id=user.id) }}" class="text-decoration-none">
-            <div class="card shadow text-center">
-                <img src="{{ url_for('uploads', filename=user.profile_pic) if user.profile_pic else '/static/default.png' }}" class="card-img-top rounded-circle mx-auto mt-3" style="width:100px;height:100px;object-fit:cover;">
-                <div class="card-body">
-                    <h5 class="username">{{ user.name }}</h5>
-                </div>
-            </div>
-        </a>
-    </div>
-    {% endfor %}
-</div>
-{% endblock %}
+</body>
+</html>
