@@ -100,6 +100,10 @@ def landing():
         for kid in kids:
             kid_dict = dict(kid)
             today = datetime.now()
+            year_start = today.replace(day=1).replace(month=1).strftime('%Y-%m-%d')
+            year_end = today.replace(day=31).replace(month=12).strftime('%Y-%m-%d')
+            stars_year = db.execute('SELECT COUNT(*) FROM task_instances WHERE user_id = ? AND starred = 1 AND date BETWEEN ? AND ?',
+                                    (kid['id'], year_start, year_end)).fetchone()[0]
             month_start = today.replace(day=1).strftime('%Y-%m-%d')
             next_month = today.replace(day=1) + timedelta(days=32)
             month_end = (next_month.replace(day=1) - timedelta(days=1)).strftime('%Y-%m-%d')
@@ -107,6 +111,7 @@ def landing():
                                     (kid['id'], month_start, month_end)).fetchone()[0]
             stars_last_two_days = db.execute('SELECT COUNT(*) FROM task_instances WHERE user_id = ? AND starred = 1 AND date IN (?, ?)',
                                             (kid['id'], yesterday_str, today_str)).fetchone()[0]
+            kid_dict['stars_year'] = stars_year
             kid_dict['stars_month'] = stars_month
             kid_dict['stars_last_two_days'] = stars_last_two_days
             kids_list.append(kid_dict)
