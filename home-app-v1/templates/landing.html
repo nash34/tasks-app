@@ -10,7 +10,7 @@
                 <img src="{{ url_for('uploads', filename=user.profile_pic) if user.profile_pic else '/static/default.png' }}" class="card-img-top rounded-circle mx-auto mt-3" style="width:100px;height:100px;object-fit:cover;">
                 <div class="card-body">
                     <h5 class="username">{{ user.name }}</h5>
-                    <p class="text-muted"><span class="text-warning">★</span> Last Two Days: {{ user.stars_last_two_days }}</p>
+                    <p class="text-muted"><span class="text-warning">★</span> Last 2 Days: {{ user.stars_last_two_days }}</p>
                     <p class="text-muted"><span class="text-warning">★</span> This month: {{ user.stars_month }}</p>
                     <p class="text-muted stars-last-two-days"><span class="text-warning">★</span> This year </p>
                     <p class="text-muted stars-last-two-days-number"> {{ user.stars_year }}</p>
