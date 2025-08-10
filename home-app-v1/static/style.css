@@ -32,11 +32,11 @@ body.bg-light-blue {
     width: auto;
     padding: 10px 20px;
 }
-.stars-last-two-days {
+.stars-large-text {
     font-weight: bold;
     font-size: 18px;
 }
-.stars-last-two-days-number {
+.stars-large-text-number {
     font-weight: bold;
     font-size: 36px;
 }
