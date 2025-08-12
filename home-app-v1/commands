@@ -39,6 +39,8 @@ sudo systemctl restart tasks-app
 sudo journalctl -u tasks-app
 
 
+---- switch to branch:
+git checkout nash34-patch-2
 
 
 ____________________________________________________________________________________
