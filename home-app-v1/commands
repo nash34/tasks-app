@@ -2,7 +2,9 @@
 ssh dev_user@192.168.1.190
 
 
+____________________________________________________________________________________
 -- common house keeping
+------------------------------------------------------------------------------------
 
 -- ngrok
 ---- Get URL
@@ -21,14 +23,67 @@ ps -aux | grep app.py
 
 
 
+____________________________________________________________________________________
 -- git commands
+------------------------------------------------------------------------------------
 
 
 
 
 
 
+____________________________________________________________________________________
+-- auto-restart on server
+------------------------------------------------------------------------------------
+sudo nano /etc/systemd/system/tasks-app.service
+
+[Unit]
+Description=Tasks App
+After=network.target
+
+[Service]
+User=dev_user
+WorkingDirectory=/home/dev_user/tasks-app/home-app-v1
+Environment="PATH=/home/dev_user/tasks-app/home-app-v1/venv/bin"
+Environment="FLASK_APP=app.py"
+Environment="FLASK_ENV=production"
+ExecStart=/home/dev_user/tasks-app/home-app-v1/venv/bin/python3 -m flask run --host=0.0.0.0 --port=5000
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+---- test it
+Enable and Start the Service:
+
+Reload systemd: 
+sudo systemctl daemon-reload
+
+Enable on boot: 
+sudo systemctl enable tasks-app
+
+Start the service: 
+sudo systemctl start tasks-app
+
+
+Verify the Service:
+
+Check status: 
+sudo systemctl status tasks-app
+
+Test locally: 
+curl http://localhost:5000
+
+
+
+
+
+
+
+
+____________________________________________________________________________________
 -- copy git files to server
+------------------------------------------------------------------------------------
 
 wget -P /home/dev_user/home-app-v1/templates/ https://raw.githubusercontent.com/nash34/tasks-app/main/home-app-v1/templates/landing.html
 wget -P /home/dev_user/home-app-v1/static/ https://raw.githubusercontent.com/nash34/tasks-app/main/home-app-v1/static/style.css
@@ -36,8 +91,13 @@ wget -P /home/dev_user/home-app-v1/static/ https://raw.githubusercontent.com/nas
 
 
 
+____________________________________________________________________________________
 -- intial setup
+------------------------------------------------------------------------------------
 pip3 install -r requirements.txt 
+
+
+
 
 
 -- copy from local to server
