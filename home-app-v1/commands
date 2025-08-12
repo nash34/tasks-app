@@ -14,9 +14,18 @@ nohup ngrok http 5000 >/dev/null 2>&1 &
 ps -aux | grep app.py
 kill -9 
 
-cd home-app-v1/
+
+cd tasks-app/home-app-v1/
 nohup python3 app.py > /dev/null 2>&1 &
 ps -aux | grep app.py
+
+
+
+-- git commands
+
+
+
+
 
 
 -- copy git files to server
