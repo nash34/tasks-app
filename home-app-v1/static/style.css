@@ -1,47 +1,42 @@
-body.bg-light-blue {
-    background-color: #E3F2FD;
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
 }
-.card {
-    background-color: #FFFFFF;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-.btn {
-    border-radius: 10px;
-    font-size: 1.2rem;
-    padding: 10px;
-}
-.btn-primary {
-    background-color: #2196F3;
-    border-color: #2196F3;
-}
-.btn-success {
+
+button {
     background-color: #4CAF50;
-    border-color: #4CAF50;
-}
-.btn-warning {
-    background-color: #FFC107;
-    border-color: #FFC107;
-}
-.list-group-item {
-    border-radius: 10px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-.arrow-btn {
-    width: auto;
+    color: white;
     padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
 }
-.stars-large-text {
-    font-weight: bold;
-    font-size: 18px;
+
+button:hover {
+    background-color: #45a049;
 }
-.stars-large-text-number {
-    font-weight: bold;
-    font-size: 36px;
+
+.profile {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
 }
-.username {
-    font-size: 36px;
-    font-family: Tahoma, sans-serif;
-    font-weight: bold;
+
+.edit-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.edit-btn:hover {
+    background-color: #0056b3;
+}
+
+.edit-input {
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 4px;
 }
