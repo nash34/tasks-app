@@ -26,8 +26,17 @@ ps -aux | grep app.py
 ____________________________________________________________________________________
 -- git commands
 ------------------------------------------------------------------------------------
+---- Update code: 
+cd /home/dev_user/tasks-app/home-app-v1 
+git pull origin main
 
 
+---- restart: 
+sudo systemctl restart tasks-app
+
+
+---- Check logs: 
+sudo journalctl -u tasks-app
 
 
 
@@ -53,25 +62,25 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 
----- test it
-Enable and Start the Service:
-
-Reload systemd: 
+-- test it
+-- Enable and Start the Service:
+---- Reload systemd: 
 sudo systemctl daemon-reload
 
-Enable on boot: 
+
+---- Enable on boot: 
 sudo systemctl enable tasks-app
 
-Start the service: 
+
+---- Start the service: 
 sudo systemctl start tasks-app
 
 
-Verify the Service:
-
-Check status: 
+---- Check status: 
 sudo systemctl status tasks-app
 
-Test locally: 
+
+---- Test locally: 
 curl http://localhost:5000
 
 
