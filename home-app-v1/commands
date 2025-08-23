@@ -86,6 +86,20 @@ sudo systemctl status tasks-app
 curl http://localhost:5000
 
 
+____________________________________________________________________________________
+ngrok - Auto Restart
+____________________________________________________________________________________
+
+nano /home/dev_user/start-ngrok.sh
+
+#!/bin/bash
+/usr/local/bin/ngrok http 5000
+
+chmod +x /home/dev_user/start-ngrok.sh
+
+-- Add to crontab for boot: 
+crontab -e
+@reboot /home/dev_user/start-ngrok.sh &
 
 
 
