@@ -99,7 +99,7 @@ ________________________________________________________________________________
 nano /home/dev_user/start-ngrok.sh
 
 #!/bin/bash
-/usr/local/bin/ngrok http 5000
+nohup /usr/local/bin/ngrok http 5000 >/dev/null 2>&1 &
 
 chmod +x /home/dev_user/start-ngrok.sh
 
