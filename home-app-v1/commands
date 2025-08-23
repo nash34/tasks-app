@@ -89,6 +89,25 @@ curl http://localhost:5000
 
 
 
+____________________________________________________________________________________
+-- SQLLITE
+------------------------------------------------------------------------------------
+
+-- access DB
+sqlite3 home.db
+
+-- See all tables list
+.tables
+
+-- View DDL
+PRAGMA table_info(users);
+
+--
+select * from users;
+
+
+.exit
+
 
 
 
